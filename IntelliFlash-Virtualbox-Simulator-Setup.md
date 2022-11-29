@@ -163,17 +163,79 @@
       ![]/(./Images/intellisflash-config-ha03.png)
     - It will take some time for both nodes to be configured into HA pair. When HA has been established, login to the web console of either ctrl-a or ctrl-b. After login in as admin, you will be presented with the Initial Configuration Wizard (ICW) page:
       ![]/(./Images/intellisflash-config-ha04.png)
-    - For unknown reason, you will not be able to proceed any further with the ICW as whatever settings entered, can't be saved (click "save" but nothing will happen). That should not be a concern as we can always configure the rest of settings manually. To disable ICW, establish a ssh session with 
-13. 
-14. 
-15. 
-16. 
-17. 
-18. 
-20. 
-21. 
-22. 
-23. 
-24. 
-25. 
-   
+    - For unknown reason, you will not be able to proceed any further with the ICW as whatever settings entered, can't be saved (click "save" but nothing will happen). That should not be a concern as we can always configure the rest of settings manually. To disable ICW, establish a ssh session with either ctrl-a or ctrl-b:
+      - Execute "zebiconfig.sh" script -> Enter choice [2]:
+        ```
+                          Tintri IntelliFlash Configuration
+
+         1) Setup Mgmt and KVM IP
+         2) Show complete menu
+         3) Exit
+
+        Enter choice [3]: 2
+        ```
+      - Enter choice [16]:
+        ```
+                          Tintri IntelliFlash Configuration
+
+         1) Support logs generation
+         2) Customer details
+         3) Hostname/Domain
+         4) DNS
+         5) Networking
+         6) Date/Time
+         7) IntelliFlash user passwords
+         8) Web-Interface SSL certificate
+         9) SMF services debugging
+        10) Dtrace script debugging
+        11) JPDA and Tomcat debugging
+        12) Analytics Mode
+        13) Configure IntelliCare
+        14) Configure KVM Networking
+        15) Configure all
+        16) Configure Initial Configuration Wizard
+        17) Configure NDMP
+        18) Enable End User License Agreement
+        19) Generate NPIV
+        97) Reset to Factory Settings
+        98) Reset to Install State
+        20) Go back to previous menu
+
+        Enter choice [20]: 16
+
+        ```
+      - Enter "Y" to disable ICW:
+        ```
+                          Tintri IntelliFlash Configuration
+
+        Do you wish to enable/disable Initial Configuration Wizard?[Y/N]Y
+        Initial Configuration Wizard is currently enabled. Do you want to disable it?[Y/N]Y
+        
+        Initial Configuration Wizard is disabled now.
+        Press 'Enter' to return to main menu
+        ```
+     - With ICW disabled, the usual web console menu will appear:
+       ![]/(./Images/intellisflash-config-ha05.png)
+     - To complete the HA pair setup, from top menu navigate to Settings -> Network and fill up all the required settings especially the array hostname and floating management IP (these are the settings that can't be saved from ICW):
+        ![]/(./Images/intellisflash-config-ha06.png)
+     - From now onward, web console should be access from the array floating management IP.
+     - Checkpoint on HA status from web console (Settings -> High Availability):
+       ![]/(./Images/intellisflash-config-ha07.png)
+13. Proceed to add more disks and network ports to both VMs for useful pools, projects, NAS and SAN configuration.
+14. Additional notes:
+15.  - Some useful shell session directories, files and commands:
+       ```
+       /usr/cluster/bin
+       /etc/cluster/nodeid
+       /etc/hanodename
+       /usr/sbin/zebiversion.sh
+       /etc/release
+       /usr/cluster/bin/scinstall -p -v
+       ipadm show-addr
+       ipadm show-if
+       dladm show-vlan
+       dladm show-link
+       zpool list
+       zpool status
+       zfs list
+       ```
