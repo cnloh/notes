@@ -127,7 +127,7 @@
      - From web console, navigate back to Settings -> Hardware section and you will find the data disk has been recognized as SSD:  
        ![](./Images/intellisflash-web-console-disk-ssd.png)  
 ---
-10. Repeat above step (2) to (9) to setup VM for "ctrl-b". Things to take note:
+10. Repeat above steps (2) to (9) to setup VM for "ctrl-b". Things to take note:
     - Assign the same quorum disk (c2t0d0 as shown above) to this VM as the name's function imply.
     - IMPORTANT - At step (8), before executing "zebiconfig.sh" script please do edit below indicated environment profile scripts first.
       Before changes:
