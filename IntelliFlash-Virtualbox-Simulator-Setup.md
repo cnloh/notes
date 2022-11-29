@@ -69,8 +69,48 @@
     - And complete the rest of configuration settings as prompted:
       ![](./Images/intellisflash-initial-config-10.png)
     - Reboot the system when prompted.
-9. Upon system rebooted, web console will be the recommended interface to manage it:
-   ![]/(./Images/intellisflash-web-console-login.png)
+9. Upon system rebooted, web console will be available to manage the system.
+   - Web console login:  
+     ![]/(./Images/intellisflash-web-console-login.png)
+   - To view the allocated disk(s), from top menu navigate to Settings -> Hardware:
+     ![]/(./Images/intellisflash-web-console-disk-hdd.png)
+   - To "trick" system to recognize the disks as SSD instead (since this is just a simulator setup), we can edit the disks' model configuration file ```/opt/tomcat/webapps/zebi/model\ssdmodel.xml```. Steps:
+     - Establish ssh session to the VM as "zebiadmin" and "su -" with root access:
+       ```
+       -bash-4.4$ ssh zebiadmin@ctrl-a
+       (zebiadmin@ctrl-a) Password:
+
+       Welcome to Tintri IntelliFlash.
+       Access to the system console is restricted. If you are not authorized
+       to access the system console, please logout and leave immediately.
+
+       -bash-4.4$ su -
+       Password:
+
+       Welcome to Tintri IntelliFlash.
+       Access to the system console is restricted. If you are not authorized
+       to access the system console, please logout and leave immediately.
+
+        [root@ctrl-a:~]#
+       ```
+     - Check assigned virtual disk's vendor and product type:
+       ```
+       [root@ctrl-a:~]# echo | format
+       Searching for disks...done
+
+       AVAILABLE DISK SELECTIONS:
+              0. c1d0 <Unknown-Unknown-0001 cyl 6523 alt 2 hd 255 sec 63>
+                 /pci@0,0/pci-ide@1,1/ide@0/cmdk@0,0
+              1. c2t0d0 <VBOX-HARDDISK-1.0-1.00GB>
+                 /pci@0,0/pci8086,2829@d/disk@0,0
+       Specify disk (enter its number): Specify disk (enter its number):
+       [root@ctrl-a:~]# sg_inq /dev/rdsk/c2t0d0s2 | grep Product
+        Product identification: VBOX HARDDISK
+        Product revision level: 1.0
+       [root@ctrl-a:~]#
+
+       ```
+     - 
 10. 
 11. 
 12. 
