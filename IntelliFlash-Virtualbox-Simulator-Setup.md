@@ -166,7 +166,7 @@
       ![](./Images/intellisflash-config-ha02.png)
     - Configuration of peer node (ctrl-a) will start and reboot. ctrl-b will follow next automatically after ctrl-a has rebooted into cluster mode.  
       ![](./Images/intellisflash-config-ha03.png)
-    - It will take some time for both nodes to be configured into HA pair. When HA has been established, login to the web console of either ctrl-a or ctrl-b. After login in as admin, you will be presented with the Initial Configuration Wizard (ICW) page:
+    - It will take a while for both nodes to be configured into HA pair. When HA has been established, login to the web console of either ctrl-a or ctrl-b. After login in as admin, you will be presented with the Initial Configuration Wizard (ICW) page:
       ![](./Images/intellisflash-config-ha04.png)
     - For unknown reason, you will not be able to proceed any further with the ICW as whatever settings entered, can't be saved (click "save" but nothing will happen). That should not be a concern as we can always configure the rest of settings manually. To disable ICW, establish a ssh session with either ctrl-a or ctrl-b:
       - Execute "zebiconfig.sh" script -> Enter choice [2]:
@@ -223,14 +223,14 @@
        ![](./Images/intellisflash-config-ha05.png)
      - To complete the HA pair setup, from top menu navigate to Settings -> Network and fill up all the required settings especially the array hostname and floating management IP (these are the settings that can't be saved from ICW):
         ![](./Images/intellisflash-config-ha06.png)
-     - From now onward, web console should be access from the array floating management IP.
+     - From now onward, web console should be accessed from the array floating management IP.
      - Checkpoint on HA status from web console (Settings -> High Availability):
        ![](./Images/intellisflash-config-ha07.png)
      - Checkpoint on HA status from web console (Settings -> Network -> Interface):
        ![](./Images/intellisflash-config-ha08.png)
 ---
 13. Proceed to add more disks and network ports to both VMs for useful pools, projects, NAS and SAN configuration.
-    - Do take note you will require a minmum of 8+1 ssd disks for all flash raidz2 pool or minimum 12+1 hdd disks for raidz2 hdd pool. This constraint can be obtained from ```/opt/tomcat/webapps/zebi/WEB-INF/classes/main-config``` 
+    - Do take note you will require a minmum of 8+1 ssd disks for all flash raidz2 pool or minimum 12+1 hdd disks for raidz2 hdd pool setup. This constraint can be obtained from configuration files residing in ```/opt/tomcat/webapps/zebi/WEB-INF/classes/main-config``` 
     - Example: ```/opt/tomcat/webapps/zebi/WEB-INF/classes/main-config/raidz2-SSD.conf```
       ```
       # head -n 15 raidz2-SSD.conf
