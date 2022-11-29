@@ -161,9 +161,9 @@
       ![]/(./Images/intellisflash-config-ha02.png)
     - Configuration of peer node (ctrl-a) will start and reboot. ctrl-b will follow next automatically after ctrl-a has rebooted into cluster mode.
       ![]/(./Images/intellisflash-config-ha03.png)
-    - It will take some time for both nodes to be configured into HA pair. When HA has been established, you will only be able to login to the web console of ctrl-a. After login in as admin, you will be presented with the Initial Configuration Wizard (ICW) page:
+    - It will take some time for both nodes to be configured into HA pair. When HA has been established, login to the web console of either ctrl-a or ctrl-b. After login in as admin, you will be presented with the Initial Configuration Wizard (ICW) page:
       ![]/(./Images/intellisflash-config-ha04.png)
-    - For unknown reason, you will not be able to proceed any further with the ICW as whatever settings entered, can't be saved (click "save" but nothing will happen). However that will not be a concern as we can always configure the rest of settings manually. 
+    - For unknown reason, you will not be able to proceed any further with the ICW as whatever settings entered, can't be saved (click "save" but nothing will happen). That should not be a concern as we can always configure the rest of settings manually. To disable ICW, establish a ssh session with 
 13. 
 14. 
 15. 
