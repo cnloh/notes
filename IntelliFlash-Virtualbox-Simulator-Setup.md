@@ -6,7 +6,7 @@
    - vCPUs: 4
    - Memory: 12GB (Tested with 8GB and below -> VM will hang during cluster startup)
    - ISO Image: Intelliflash-3_11_4_1.4.iso
-   - Root Disk: 20GB
+   - Root Disk: 30GB
    - HBA for Data Disks: AHCI (SATA) (Tried SAS controller type but assigned vdisks will not be recognised by ZebiOS)
    - Data Disk: Starts with one VDH, any size and must be configured as shareable. To be assigned as quorum disk during cluster configuration.
    - NIC: Assign two network adapter. One for mgmt while the other for cluster interconnect.
@@ -23,8 +23,31 @@
 5. Reboot for the freshly installed system to take effect:
    ![](./Images/intellisflash-initial-os-install05.png)
 
-6. 
-7. 
+6. Once system rebooted, login as root / root123:
+   ![](./Images/intellisflash-initial-os-install06.png)
+7. Before proceeding with the "zebiconfig.sh" configuration script to perform initial setup for the controller, verify the device name to assign for quorum, mgmt and cluster interconnect interfaces.
+   - To check on the quorum disk to assign:
+     ```
+     [root@intelliflash:~]# echo | format
+     Searching for disks...done
+
+     AVAILABLE DISK SELECTIONS:
+            0. c1d0 <Unknown-Unknown-0001 cyl 2607 alt 2 hd 255 sec 63>
+               /pci@0,0/pci-ide@1,1/ide@0/cmdk@0,0
+            1. c2t0d0 <VBOX-HARDDISK-1.0-1.00GB>
+               /pci@0,0/pci8086,2829@d/disk@0,0
+     Specify disk (enter its number): Specify disk (enter its number):
+     ```
+     From above ouput, "c2t0d0" shall be the disk to be assigned as the quorum disk.
+   - To check on the network interfaces to assign:
+     ```
+     [root@intelliflash:~]# dladm show-link
+     LINK        CLASS     MTU    STATE    BRIDGE     OVER
+     e1000g0     phys      1500   unknown       --         --
+     e1000g1     phys      1500   unknown  --         --
+     ```
+     e1000g0 -> Will be assigned for mgmt interface.  
+     e1000g1 -> Will be assigned for cluster interconnect.  
 8. 
 9. 
 10. 
@@ -38,4 +61,6 @@
 18. 
 19. 
 20. 
+21. 
+22. 
    
