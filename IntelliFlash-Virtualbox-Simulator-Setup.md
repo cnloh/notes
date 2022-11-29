@@ -57,8 +57,8 @@
       ![](./Images/intellisflash-initial-config-02.png)
     - 'Y' to configure as HA pair and enter the quorum and interconnect device name as capture in step (7):  
       ![](./Images/intellisflash-initial-config-03.png) 
-    - Time zone configuration:  
       ![](./Images/intellisflash-initial-config-04.png)
+    - Time zone configuration:  
       ![](./Images/intellisflash-initial-config-05.png)
       ![](./Images/intellisflash-initial-config-06.png)
       ![](./Images/intellisflash-initial-config-07.png)
