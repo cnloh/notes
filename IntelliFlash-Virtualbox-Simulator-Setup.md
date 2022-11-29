@@ -25,14 +25,15 @@
 
 6. Once system rebooted, login as root / root123:
    ![](./Images/intellisflash-initial-os-install06.png)
-7. Before proceeding with the "zebiconfig.sh" configuration script to perform initial setup for the controller, verify the device name to assign for quorum, mgmt and cluster interconnect interfaces.
+
+7. Before proceeding with the "zebiconfig.sh" configuration script to perform initial setup, verify the device name to assign for quorum, mgmt and cluster interconnect interfaces.
    - To check on the quorum disk to assign:
      ```
      [root@intelliflash:~]# echo | format
      Searching for disks...done
 
      AVAILABLE DISK SELECTIONS:
-            0. c1d0 <Unknown-Unknown-0001 cyl 2607 alt 2 hd 255 sec 63>
+            0. c1d0 <Unknown-Unknown-0001 cyl 6523 alt 2 hd 255 sec 63>
                /pci@0,0/pci-ide@1,1/ide@0/cmdk@0,0
             1. c2t0d0 <VBOX-HARDDISK-1.0-1.00GB>
                /pci@0,0/pci8086,2829@d/disk@0,0
@@ -48,8 +49,28 @@
      ```
      e1000g0 -> Will be assigned for mgmt interface.  
      e1000g1 -> Will be assigned for cluster interconnect.  
-8. 
-9. 
+
+8. Kick start the initial configuration script "zebiconfig.sh".
+    - Initial screen:
+      ![](./Images/intellisflash-initial-config-01.png)
+    - Enter hostname and domainname for controller:
+      ![](./Images/intellisflash-initial-config-02.png)
+    - 'Y' to configure as HA pair and enter the quorum and interconnect device name as capture in step (7):
+      ![](./Images/intellisflash-initial-config-03.png) 
+    - Time zone configuration:
+      ![](./Images/intellisflash-initial-config-04.png)
+      ![](./Images/intellisflash-initial-config-05.png)
+      ![](./Images/intellisflash-initial-config-06.png)
+      ![](./Images/intellisflash-initial-config-07.png)
+      ![](./Images/intellisflash-initial-config-08.png)
+    - Setting up the password for 'zebiadmin', 'root' & 'admin':
+      ![](./Images/intellisflash-initial-config-09.png)
+    - Answer 'N' for NDMP, IntelliCare & KVM settings.
+    - And complete the rest of configuration settings as prompted:
+      ![](./Images/intellisflash-initial-config-10.png)
+    - Reboot the system when prompted.
+9. Upon system rebooted, web console will be the recommended interface to manage it:
+   ![]/(./Images/intellisflash-web-console-login.png)
 10. 
 11. 
 12. 
@@ -63,4 +84,5 @@
 20. 
 21. 
 22. 
+23. 
    
