@@ -6,7 +6,7 @@
    - vCPUs: 4
    - Memory: 12GB (Tested with 8GB and below -> VM will hang during cluster startup)
    - ISO Image: Intelliflash-3_11_4_1.4.iso
-   - Root Disk: 30GB
+   - Root Disk: 50GB
    - HBA for Data Disks: AHCI (SATA) (Tried SAS controller type but assigned vdisks will not be recognised by ZebiOS)
    - Data Disk: Starts with one VDH, any size and must be configured as shareable. To be assigned as quorum disk during cluster configuration.
    - NIC: Assign two network adapter. One for mgmt while the other for cluster interconnect.
