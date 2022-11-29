@@ -14,7 +14,7 @@
 ---
 3. Proceed to boot from the IntelliFlash ISO image:  
    ![](./Images/intellisflash-initial-os-install01.png)
-
+---
 4. After booting, follow onscreen instructions to install IntelliFlash base OS (ZebiOS) and software:
    ![](./Images/intellisflash-initial-os-install02.png)
    ![](./Images/intellisflash-initial-os-install03.png)
