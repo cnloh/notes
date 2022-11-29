@@ -72,10 +72,10 @@
 ---
 9. Upon system rebooted, web console will be available to manage the system.  
    - Web console login:  
-     ![]/(./Images/intellisflash-web-console-login.png)
+     ![](./Images/intellisflash-web-console-login.png)  
    - To view the allocated disk(s), from top menu navigate to Settings -> Hardware:  
-     ![]/(./Images/intellisflash-web-console-disk-hdd.png)
-   - To "trick" system to recognize the disks as SSD instead (since this is just a simulator setup), we can edit the disks' model configuration file ```/opt/tomcat/webapps/zebi/model/ssdmodel.xml```. Steps:  
+     ![](./Images/intellisflash-web-console-disk-hdd.png)
+   - To "trick" system to recognize the data disk as SSD instead (since this is just a simulator setup), we can edit the disks' model configuration file ```/opt/tomcat/webapps/zebi/model/ssdmodel.xml```. Steps:  
      - Establish ssh session to the VM as "zebiadmin" and "su -" with root access:
        ```
        -bash-4.4$ ssh zebiadmin@ctrl-a
@@ -105,6 +105,7 @@
               1. c2t0d0 <VBOX-HARDDISK-1.0-1.00GB>
                  /pci@0,0/pci8086,2829@d/disk@0,0
        Specify disk (enter its number): Specify disk (enter its number):
+       
        [root@ctrl-a:~]# sg_inq /dev/rdsk/c2t0d0s2 | grep Product
         Product identification: VBOX HARDDISK
         Product revision level: 1.0
@@ -123,8 +124,8 @@
        STATE          STIME    FMRI
        online*        16:48:48 svc:/network/tomcat:default
        ```
-     - From web console, navigate back to Settings -> Hardware section and you will find the data disk has been recognized as SSD:
-       ![]/(./Images/intellisflash-web-console-disk-ssd.png)  
+     - From web console, navigate back to Settings -> Hardware section and you will find the data disk has been recognized as SSD:  
+       ![](./Images/intellisflash-web-console-disk-ssd.png)  
 ---
 10. Repeat above step (2) to (9) to setup VM for "ctrl-b". Things to take note:
     - Assign the same quorum disk (c2t0d0 as shown above) to this VM as the name's function imply.
