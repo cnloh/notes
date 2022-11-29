@@ -221,21 +221,63 @@
      - From now onward, web console should be access from the array floating management IP.
      - Checkpoint on HA status from web console (Settings -> High Availability):
        ![]/(./Images/intellisflash-config-ha07.png)
+     - Checkpoint on HA status from web console (Settings -> Network -> Interface):
+       ![]/(./Images/intellisflash-config-ha08.png)
 13. Proceed to add more disks and network ports to both VMs for useful pools, projects, NAS and SAN configuration.
+    - Do take note you will require a minmum of 8+1 ssd disks for all flash raidz2 pool or minimum 12+1 hdd disks for raidz2 hdd pool. This constraint can be obtained from ```/opt/tomcat/webapps/zebi/WEB-INF/classes/main-config``` 
+    - Example: ```/opt/tomcat/webapps/zebi/WEB-INF/classes/main-config/raidz2-SSD.conf```
+      ```
+      # head -n 15 raidz2-SSD.conf
+      # n=a,b,c
+      # n: #disks allocated for data
+      # a: #disks to be allocated for vdev1
+      # b: #disks to be allocated for vdev2
+      # c: #disks to be allocated for vdev3
+      # If n > (a + b +c), the remaining disks [n - (a + b + c)] will be left unused
+      # If n > MAX_SIZE, the conf file lookup happens after reserving 12x disks beforehand, where x is such that (n - 12x) <= MAX_SIZE
+      # Note: No need to restart tomcat when the conf file is updated for any reason
+      
+      MIN_DATA_SPARE_CREATE=1
+      MIN_META_SPARE_CREATE=0
+      ADDITIONAL_SPARE_THRESHOLD=-1
+      
+      8=8
+      9=9
+      ```
+ - Example: ```/opt/tomcat/webapps/zebi/WEB-INF/classes/main-config/raidz2-HDD.conf```
+      ```
+      # head -n 15 raidz2-HDD.conf
+      # n=a,b,c
+      # n: #disks allocated for data
+      # a: #disks to be allocated for vdev1
+      # b: #disks to be allocated for vdev2
+      # c: #disks to be allocated for vdev3
+      # If n > (a + b +c), the remaining disks [n - (a + b + c)] will be left unused
+      # If n > MAX_SIZE, the conf file lookup happens after reserving 12x disks beforehand, where x is such that (n - 12x) <= MAX_SIZE
+      # Note: No need to restart tomcat when the conf file is updated for any reason
+      
+      MIN_DATA_SPARE_CREATE=1
+      ADDITIONAL_SPARE_THRESHOLD=-1
+      
+      12=6,6
+      13=7,6
+      14=7,7
+      ```
 14. Additional notes:
-15.  - Some useful shell session directories, files and commands:
-       ```
-       /usr/cluster/bin
-       /etc/cluster/nodeid
-       /etc/hanodename
-       /usr/sbin/zebiversion.sh
-       /etc/release
-       /usr/cluster/bin/scinstall -p -v
-       ipadm show-addr
-       ipadm show-if
-       dladm show-vlan
-       dladm show-link
-       zpool list
-       zpool status
-       zfs list
-       ```
+    - Some useful shell session directories, files and commands:
+      ```
+      /opt/tomcat/webapps/zebi/WEB-INF/classes/main-config
+      /usr/cluster/bin
+      /etc/cluster/nodeid
+      /etc/hanodename
+      /usr/sbin/zebiversion.sh
+      /etc/release
+      /usr/cluster/bin/scinstall -p -v
+      ipadm show-addr
+      ipadm show-if
+      dladm show-vlan
+      dladm show-link
+      zpool list
+      zpool status
+      zfs list
+      ```
