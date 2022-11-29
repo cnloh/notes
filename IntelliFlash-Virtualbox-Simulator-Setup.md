@@ -74,7 +74,7 @@
      ![]/(./Images/intellisflash-web-console-login.png)
    - To view the allocated disk(s), from top menu navigate to Settings -> Hardware:
      ![]/(./Images/intellisflash-web-console-disk-hdd.png)
-   - To "trick" system to recognize the disks as SSD instead (since this is just a simulator setup), we can edit the disks' model configuration file ```/opt/tomcat/webapps/zebi/model\ssdmodel.xml```. Steps:
+   - To "trick" system to recognize the disks as SSD instead (since this is just a simulator setup), we can edit the disks' model configuration file ```/opt/tomcat/webapps/zebi/model/ssdmodel.xml```. Steps:
      - Establish ssh session to the VM as "zebiadmin" and "su -" with root access:
        ```
        -bash-4.4$ ssh zebiadmin@ctrl-a
@@ -108,21 +108,72 @@
         Product identification: VBOX HARDDISK
         Product revision level: 1.0
        [root@ctrl-a:~]#
-
        ```
-     - 
-10. 
-11. 
-12. 
+     - Add an entry in ```/opt/tomcat/webapps/zebi/model/ssdmodel.xml``` (contents with this xml file is self explanatory) to recognize "VBOX" "HARDDISK" as flash disk. Sample "VBOX" entry added:
+       ```
+       [root@ctrl-a:/]# egrep "flash|VBOX" /opt/tomcat/webapps/zebi/model/ssdmodel.xml
+               <!-- empty bias means it's for general data (all-flash) purpose -->
+               <model name="HARDDISK" vendor="VBOX" bias="" />
+       ```
+     - Restart the web console service (tomcat) to take effect.
+       ```
+       [root@ctrl-a:/]# svccadm restart tomcat
+       [root@ctrl-a:/]# svcs tomcat
+       STATE          STIME    FMRI
+       online*        16:48:48 svc:/network/tomcat:default
+       ```
+     - From web console, navigate back to Settings -> Hardware section and you will find the data disk has been recognized as SSD:
+       ![]/(./Images/intellisflash-web-console-disk-ssd.png)
+10. Repeat above step (2) to (9) to setup VM for "ctrl-b". Things to take note:
+    - Assign the same quorum disk (c2t0d0 as shown above) to this VM as the name's function imply.
+    - IMPORTANT - At step (8), before executing "zebiconfig.sh" script please do edit below indicated environment profile scripts first.
+      Before changes:
+      ```
+      # grep CONTROLLER_NO /etc/zebi/env.bash
+      export CONTROLLER_NO="0"
+      # grep CONTROLLER_NO /etc/zebi/env.sh
+      CONTROLLER_NO="0"
+      ```  
+      After changes:
+      ```
+      # grep CONTROLLER_NO /etc/zebi/env.bash
+      export CONTROLLER_NO="1"
+      # grep CONTROLLER_NO /etc/zebi/env.sh
+      CONTROLLER_NO="1"
+      ```  
+      Above changes will indicate this VM as the second controller else there will be issues when setting up the HA pair as both will think they are the first controller 0.
+11. Verifying correct VM's node assignment.
+    - Establish ssh session to each VM:
+      - From VM designated as Controller A:
+        ```
+        [root@ctrl-a:~]# cat /etc/hanodename
+        ha-controller-a
+        ```
+      - From VM designated as Controller B:
+        ```
+        [root@ctrl-b:~]# cat /etc/hanodename
+        ha-controller-b
+        ```
+12. Establish HA Pair. 
+    - Login to ctrl-b web console. From top menu, Settings -> High Availability
+      ![]/(./Images/intellisflash-config-ha01.png)
+    - Click "Configure HA" and you will be prompted to enter peer node (ctrl-a) login (admin) credential. 
+      ![]/(./Images/intellisflash-config-ha02.png)
+    - Configuration of peer node (ctrl-a) will start and reboot. ctrl-b will follow next automatically after ctrl-a has rebooted into cluster mode.
+      ![]/(./Images/intellisflash-config-ha03.png)
+    - It will take some time for both nodes to be configured into HA pair. When HA has been established, you will only be able to login to the web console of ctrl-a. After login in as admin, you will be presented with the Initial Configuration Wizard (ICW) page:
+      ![]/(./Images/intellisflash-config-ha04.png)
+    - For unknown reason, you will not be able to proceed any further with the ICW as whatever settings entered, can't be saved (click "save" but nothing will happen). However that will not be a concern as we can always configure the rest of settings manually. 
 13. 
 14. 
 15. 
 16. 
 17. 
 18. 
-19. 
 20. 
 21. 
 22. 
 23. 
+24. 
+25. 
    
