@@ -1,6 +1,6 @@
 1. Download iso image from http://s1.tegile.com/ps/fw
    - Example: http://s1.tegile.com/ps/fw/Aachen/Release-SW/Intelliflash-3_11_4_1.4.iso
-
+---
 2. Configure two VM for HA pair setup. Sample VM configuration:
    - OS Type: OpenSolaris (64-bit)
    - vCPUs: 4
@@ -11,7 +11,7 @@
    - Data Disk: Starts with one VDH, any size and must be configured as shareable. To be assigned as quorum disk during cluster configuration.
    - NIC: Assign two network adapter. One for mgmt while the other for cluster interconnect.
      ![](./Images/intelliflash-sample-vm-config.png)
-
+---
 3. Proceed to boot from the IntelliFlash ISO image:  
    ![](./Images/intellisflash-initial-os-install01.png)
 
@@ -19,13 +19,13 @@
    ![](./Images/intellisflash-initial-os-install02.png)
    ![](./Images/intellisflash-initial-os-install03.png)
    ![](./Images/intellisflash-initial-os-install04.png)
-
+---
 5. Reboot for the freshly installed system to take effect:
    ![](./Images/intellisflash-initial-os-install05.png)
-
+---
 6. Once system rebooted, login as root / root123:
    ![](./Images/intellisflash-initial-os-install06.png)
-
+---
 7. Before proceeding with the "zebiconfig.sh" configuration script to perform initial setup, verify the device name to assign for quorum, mgmt and cluster interconnect interfaces.
    - To check on the quorum disk to assign:
      ```
@@ -49,32 +49,33 @@
      ```
      e1000g0 -> Will be assigned for mgmt interface.  
      e1000g1 -> Will be assigned for cluster interconnect.  
-
-8. Kick start the initial configuration script "zebiconfig.sh".
-    - Initial screen:
+---
+8. Kick start the initial configuration script "zebiconfig.sh".  
+    - Initial screen:  
       ![](./Images/intellisflash-initial-config-01.png)
-    - Enter hostname and domainname for controller:
+    - Enter hostname and domainname for controller:  
       ![](./Images/intellisflash-initial-config-02.png)
-    - 'Y' to configure as HA pair and enter the quorum and interconnect device name as capture in step (7):
+    - 'Y' to configure as HA pair and enter the quorum and interconnect device name as capture in step (7):  
       ![](./Images/intellisflash-initial-config-03.png) 
-    - Time zone configuration:
+    - Time zone configuration:  
       ![](./Images/intellisflash-initial-config-04.png)
       ![](./Images/intellisflash-initial-config-05.png)
       ![](./Images/intellisflash-initial-config-06.png)
       ![](./Images/intellisflash-initial-config-07.png)
       ![](./Images/intellisflash-initial-config-08.png)
-    - Setting up the password for 'zebiadmin', 'root' & 'admin':
+    - Setting up the password for 'zebiadmin', 'root' & 'admin':  
       ![](./Images/intellisflash-initial-config-09.png)
-    - Answer 'N' for NDMP, IntelliCare & KVM settings.
-    - And complete the rest of configuration settings as prompted:
+    - Answer 'N' for NDMP, IntelliCare & KVM settings.  
+    - And complete the rest of configuration settings as prompted:  
       ![](./Images/intellisflash-initial-config-10.png)
-    - Reboot the system when prompted.
-9. Upon system rebooted, web console will be available to manage the system.
+    - Reboot the system when prompted.  
+---
+9. Upon system rebooted, web console will be available to manage the system.  
    - Web console login:  
      ![]/(./Images/intellisflash-web-console-login.png)
-   - To view the allocated disk(s), from top menu navigate to Settings -> Hardware:
+   - To view the allocated disk(s), from top menu navigate to Settings -> Hardware:  
      ![]/(./Images/intellisflash-web-console-disk-hdd.png)
-   - To "trick" system to recognize the disks as SSD instead (since this is just a simulator setup), we can edit the disks' model configuration file ```/opt/tomcat/webapps/zebi/model/ssdmodel.xml```. Steps:
+   - To "trick" system to recognize the disks as SSD instead (since this is just a simulator setup), we can edit the disks' model configuration file ```/opt/tomcat/webapps/zebi/model/ssdmodel.xml```. Steps:  
      - Establish ssh session to the VM as "zebiadmin" and "su -" with root access:
        ```
        -bash-4.4$ ssh zebiadmin@ctrl-a
@@ -123,7 +124,8 @@
        online*        16:48:48 svc:/network/tomcat:default
        ```
      - From web console, navigate back to Settings -> Hardware section and you will find the data disk has been recognized as SSD:
-       ![]/(./Images/intellisflash-web-console-disk-ssd.png)
+       ![]/(./Images/intellisflash-web-console-disk-ssd.png)  
+---
 10. Repeat above step (2) to (9) to setup VM for "ctrl-b". Things to take note:
     - Assign the same quorum disk (c2t0d0 as shown above) to this VM as the name's function imply.
     - IMPORTANT - At step (8), before executing "zebiconfig.sh" script please do edit below indicated environment profile scripts first.
@@ -142,6 +144,7 @@
       CONTROLLER_NO="1"
       ```  
       Above changes will indicate this VM as the second controller else there will be issues when setting up the HA pair as both will think they are the first controller 0.
+---
 11. Verifying correct VM's node assignment.
     - Establish ssh session to each VM:
       - From VM designated as Controller A:
@@ -154,6 +157,7 @@
         [root@ctrl-b:~]# cat /etc/hanodename
         ha-controller-b
         ```
+---
 12. Establish HA Pair. 
     - Login to ctrl-b web console. From top menu, Settings -> High Availability
       ![]/(./Images/intellisflash-config-ha01.png)
@@ -223,6 +227,7 @@
        ![]/(./Images/intellisflash-config-ha07.png)
      - Checkpoint on HA status from web console (Settings -> Network -> Interface):
        ![]/(./Images/intellisflash-config-ha08.png)
+---
 13. Proceed to add more disks and network ports to both VMs for useful pools, projects, NAS and SAN configuration.
     - Do take note you will require a minmum of 8+1 ssd disks for all flash raidz2 pool or minimum 12+1 hdd disks for raidz2 hdd pool. This constraint can be obtained from ```/opt/tomcat/webapps/zebi/WEB-INF/classes/main-config``` 
     - Example: ```/opt/tomcat/webapps/zebi/WEB-INF/classes/main-config/raidz2-SSD.conf```
@@ -244,7 +249,7 @@
       8=8
       9=9
       ```
- - Example: ```/opt/tomcat/webapps/zebi/WEB-INF/classes/main-config/raidz2-HDD.conf```
+    - Example: ```/opt/tomcat/webapps/zebi/WEB-INF/classes/main-config/raidz2-HDD.conf```
       ```
       # head -n 15 raidz2-HDD.conf
       # n=a,b,c
@@ -263,6 +268,7 @@
       13=7,6
       14=7,7
       ```
+---
 14. Additional notes:
     - Some useful shell session directories, files and commands:
       ```
