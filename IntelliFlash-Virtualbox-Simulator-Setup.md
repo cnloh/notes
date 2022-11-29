@@ -162,9 +162,9 @@
 12. Establish HA Pair. 
     - Login to ctrl-b web console. From top menu, Settings -> High Availability
       ![](./Images/intellisflash-config-ha01.png)
-    - Click "Configure HA" and you will be prompted to enter peer node (ctrl-a) login (admin) credential. 
+    - Click "Configure HA" and you will be prompted to enter peer node (ctrl-a) login credential. 
       ![](./Images/intellisflash-config-ha02.png)
-    - Configuration of peer node (ctrl-a) will start and reboot. ctrl-b will follow next automatically after ctrl-a has rebooted into cluster mode.
+    - Configuration of peer node (ctrl-a) will start and reboot. ctrl-b will follow next automatically after ctrl-a has rebooted into cluster mode.  
       ![](./Images/intellisflash-config-ha03.png)
     - It will take some time for both nodes to be configured into HA pair. When HA has been established, login to the web console of either ctrl-a or ctrl-b. After login in as admin, you will be presented with the Initial Configuration Wizard (ICW) page:
       ![](./Images/intellisflash-config-ha04.png)
