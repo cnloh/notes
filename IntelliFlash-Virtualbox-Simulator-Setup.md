@@ -26,7 +26,7 @@
 6. Once system rebooted, login as root / root123:
    ![](./Images/intellisflash-initial-os-install06.png)
 ---
-7. Before proceeding with the "zebiconfig.sh" configuration script to perform initial setup, verify the device name to assign for quorum, mgmt and cluster interconnect interfaces.
+7. Before proceeding with the "zebiconfig.sh" configuration script to perform initial setup, verify the device name to be assigned for quorum, mgmt and cluster interconnect interfaces.
    - To check on the quorum disk to assign:
      ```
      [root@intelliflash:~]# echo | format
