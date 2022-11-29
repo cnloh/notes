@@ -63,7 +63,7 @@
       ![](./Images/intellisflash-initial-config-06.png)
       ![](./Images/intellisflash-initial-config-07.png)
       ![](./Images/intellisflash-initial-config-08.png)
-    - Setting up the password for 'zebiadmin', 'root' & 'admin':  
+    - Setup the password for 'zebiadmin', 'root' & 'admin':  
       ![](./Images/intellisflash-initial-config-09.png)
     - Answer 'N' for NDMP, IntelliCare & KVM settings.  
     - And complete the rest of configuration settings as prompted:  
