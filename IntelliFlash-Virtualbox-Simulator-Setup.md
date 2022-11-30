@@ -76,7 +76,7 @@
    - To view the allocated disk(s), from top menu navigate to Settings -> Hardware:  
      ![](./Images/intellisflash-web-console-disk-hdd.png)
    - To "trick" system to recognize the data disk as SSD instead (since this is just a simulator setup), we can edit the disks' model configuration file ```/opt/tomcat/webapps/zebi/model/ssdmodel.xml```. Steps:  
-     - Establish ssh session to the VM as "zebiadmin" and "su -" with root access:
+     - Establish ssh session to the VM as "zebiadmin" and "su -" for root access:
        ```
        -bash-4.4$ ssh zebiadmin@ctrl-a
        (zebiadmin@ctrl-a) Password:
