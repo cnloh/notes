@@ -8,7 +8,7 @@
    - ISO Image: Intelliflash-3_11_4_1.4.iso
    - Root Disk: 50GB
    - HBA for Data Disks: AHCI (SATA) (Tried SAS controller type but assigned vdisks will not be recognised by ZebiOS)
-   - Data Disk: Starts with one VDH, any size and must be configured as shareable. To be assigned as quorum disk during cluster configuration.
+   - Data Disk: Starts with one vdisk, any size and must be configured as shareable. To be assigned as quorum disk during cluster configuration.
    - NIC: Assign two network adapter. One for mgmt while the other for cluster interconnect.
      ![](./Images/intelliflash-sample-vm-config.png)
 ---
