@@ -1,7 +1,7 @@
-1. Download iso image from http://s1.tegile.com/ps/fw
+### 1. Download iso image from http://s1.tegile.com/ps/fw
    - Example: http://s1.tegile.com/ps/fw/Aachen/Release-SW/Intelliflash-3_11_4_1.4.iso
 ---
-2. Configure two VM for HA pair setup. Sample VM configuration:
+### 2. Configure two VM for HA pair setup. Sample VM configuration:
    - OS Type: OpenSolaris (64-bit)
    - vCPUs: 4
    - Memory: 12GB (Tested with 8GB and below -> VM will hang during cluster startup)
@@ -12,21 +12,21 @@
    - NIC: Assign two network adapter. One for mgmt while the other for cluster interconnect.
      ![](./Images/intelliflash-sample-vm-config.png)
 ---
-3. Proceed to boot from the IntelliFlash ISO image:  
+### 3. Proceed to boot from the IntelliFlash ISO image:  
    ![](./Images/intellisflash-initial-os-install01.png)
 ---
-4. After booting, follow onscreen instructions to install IntelliFlash base OS (ZebiOS) and software:
+### 4. After booting, follow onscreen instructions to install IntelliFlash base OS (ZebiOS) and software:
    ![](./Images/intellisflash-initial-os-install02.png)
    ![](./Images/intellisflash-initial-os-install03.png)
    ![](./Images/intellisflash-initial-os-install04.png)
 ---
-5. Reboot for the freshly installed system to take effect:
+### 5. Reboot for the freshly installed system to take effect:
    ![](./Images/intellisflash-initial-os-install05.png)
 ---
-6. Once system rebooted, login as root / root123:
+### 6. Once system rebooted, login as root / root123:
    ![](./Images/intellisflash-initial-os-install06.png)
 ---
-7. Before proceeding with the "zebiconfig.sh" configuration script to perform initial setup, verify the device name to be assigned for quorum, mgmt and cluster interconnect interfaces.
+### 7. Before proceeding with the "zebiconfig.sh" configuration script to perform initial setup, verify the device name to be assigned for quorum, mgmt and cluster interconnect interfaces.
    - To check on the quorum disk to assign:
      ```
      [root@intelliflash:~]# echo | format
@@ -50,7 +50,7 @@
      e1000g0 -> Will be assigned for mgmt interface.  
      e1000g1 -> Will be assigned for cluster interconnect.  
 ---
-8. Kick start the initial configuration script "zebiconfig.sh".  
+### 8. Kick start the initial configuration script "zebiconfig.sh".  
     - Initial screen:  
       ![](./Images/intellisflash-initial-config-01.png)
     - Enter hostname and domainname for controller:  
@@ -70,7 +70,7 @@
       ![](./Images/intellisflash-initial-config-10.png)
     - Reboot the system when prompted.  
 ---
-9. Upon system rebooted, web console will be available to manage the system.  
+### 9. Upon system rebooted, web console will be available to manage the system.  
    - Web console login:  
      ![](./Images/intellisflash-web-console-login.png)  
    - To view the allocated disk(s), from top menu navigate to Settings -> Hardware:  
@@ -127,7 +127,7 @@
      - From web console, navigate back to Settings -> Hardware section and you will find the data disk has been recognized as SSD:  
        ![](./Images/intellisflash-web-console-disk-ssd.png)  
 ---
-10. Repeat above steps (2) to (9) to setup VM for "ctrl-b". Things to take note:
+### 10. Repeat above steps (2) to (9) to setup VM for "ctrl-b". Things to take note:
     - Assign the same quorum disk (c2t0d0 as shown above) to this VM as the name's function imply.
     - IMPORTANT - At step (8), before executing "zebiconfig.sh" script please do edit below indicated environment profile scripts first.
       Before changes:
@@ -146,7 +146,7 @@
       ```  
       Above changes will indicate this VM as the second controller else there will be issues when setting up the HA pair as both will think they are the first controller 0.
 ---
-11. Verifying correct VM's node assignment.
+### 11. Verifying correct VM's node assignment.
     - Establish ssh session to each VM:
       - From VM designated as Controller A:
         ```
@@ -159,7 +159,7 @@
         ha-controller-b
         ```
 ---
-12. Establish HA Pair. 
+### 12. Establish HA Pair. 
     - Login to ctrl-b web console. From top menu, Settings -> High Availability
       ![](./Images/intellisflash-config-ha01.png)
     - Click "Configure HA" and you will be prompted to enter peer node (ctrl-a) login credential. 
@@ -229,7 +229,7 @@
      - Checkpoint on HA status from web console (Settings -> Network -> Interface):
        ![](./Images/intellisflash-config-ha08.png)
 ---
-13. Proceed to add more disks and network ports to both VMs for useful pools, projects, NAS and SAN configuration.
+### 13. Proceed to add more disks and network ports to both VMs for useful pools, projects, NAS and SAN configuration.
     - Do take note you will require a minmum of 8+1 ssd disks for all flash raidz2 pool or minimum 12+1 hdd disks for raidz2 hdd pool setup. This constraint can be obtained from configuration files residing in ```/opt/tomcat/webapps/zebi/WEB-INF/classes/main-config``` 
     - Example: ```/opt/tomcat/webapps/zebi/WEB-INF/classes/main-config/raidz2-SSD.conf```
       ```
@@ -270,7 +270,7 @@
       14=7,7
       ```
 ---
-14. Additional notes:
+### 14. Additional notes:
     - Some useful shell session directories, files and commands:
       ```
       /opt/tomcat/webapps/zebi/WEB-INF/classes/main-config
