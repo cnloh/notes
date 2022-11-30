@@ -111,7 +111,7 @@
         Product revision level: 1.0
        [root@ctrl-a:~]#
        ```
-     - Add an entry in ```/opt/tomcat/webapps/zebi/model/ssdmodel.xml``` (contents within the xml file is self explanatory) to recognize "VBOX" "HARDDISK" as flash disk. Sample "VBOX" entry added:
+     - Add an entry in ```/opt/tomcat/webapps/zebi/model/ssdmodel.xml``` (contents within the xml file are self explanatory) to recognize "VBOX" "HARDDISK" as flash disk. Sample "VBOX" entry added:
        ```
        [root@ctrl-a:/]# egrep "flash|VBOX" /opt/tomcat/webapps/zebi/model/ssdmodel.xml
                <!-- empty bias means it's for general data (all-flash) purpose -->
@@ -119,7 +119,7 @@
        ```
      - Restart the web console service (tomcat) to take effect.
        ```
-       [root@ctrl-a:/]# svccadm restart tomcat
+       [root@ctrl-a:/]# svcadm restart tomcat
        [root@ctrl-a:/]# svcs tomcat
        STATE          STIME    FMRI
        online*        16:48:48 svc:/network/tomcat:default
