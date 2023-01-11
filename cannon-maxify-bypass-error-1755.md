@@ -1,0 +1,11 @@
+- Cannon printer error code 1755 - Ink has run out
+  - Do not remove an ink tank until a new one is prepared to be installed.
+  - Once you remove an ink tank, the machine will not operate until a new one is installed.
+  - Once you remove an ink tank, the machine will not operate even if the removed ink tank is re-inserted.
+- If ink tank has already been removed and you do not wish to replace it but to continue to use remaining ink tanks:
+  - Open the front cover and eject the re-inserted ink tank.
+  - Off the power source with the cover still open and ink tank removed.
+  - With the machine power off, re-insert back the ink tank and close the cover.
+  - Power back the machine.
+  - You will be prompted and allowed to bypass the low or emtpy ink tank by pressing the "Stop" button for 5 seconds. 
+  - Machine operational again.  
