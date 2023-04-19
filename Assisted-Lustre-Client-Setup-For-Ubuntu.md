@@ -70,8 +70,6 @@
 - Load and enable the LNET service for the client:
   ```
   # modprobe lnet
-  # lnetctl lnet configure --all
-  # lnetctl export --backup > /etc/lnet.conf
   # systemctl enable lnet.service
   Created symlink /etc/systemd/system/multi-user.target.wants/lnet.service → /lib/systemd/system/lnet.service.
   ```
