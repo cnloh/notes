@@ -72,10 +72,6 @@
   # lustre_rmmod 
   # modprobe lnet
   # lnetctl lnet configure --all
-  # lnetctl export --backup > /etc/lnet.conf
-  # cat /etc/lnet.conf - Verify lnet settings
-  # systemctl enable lnet.service
-  Created symlink /etc/systemd/system/multi-user.target.wants/lnet.service → /lib/systemd/system/lnet.service.
   ```
 
 - Load the Lustre module:
