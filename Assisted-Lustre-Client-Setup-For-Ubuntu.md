@@ -12,7 +12,9 @@
   ```
   # cd exa-client
   # ./exa_client_deploy.py
-
+  ### If installing using separately download hotfix for example:
+  # ./exa_client_deploy.py --src-file /root/exa-client-6.2/2.14.0-ddn104/lustre-client-2.14.0_ddn104.tar.gz
+  
   DDN EXAScaler client software installation tool: Version 6.1.0
   Select an option:
 
