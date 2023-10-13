@@ -98,5 +98,5 @@
 - Sample /etc/fstab configuration for automated filesystem mount:
   ```
   # tail -n 1 /etc/fstab
-  192.168.3.105@tcp,192.168.3.109@tcp:/testfs /mnt/testfs lustre defaults,_netdev 0 0
+  192.168.3.105@tcp,192.168.3.109@tcp:/testfs /mnt/testfs lustre defaults,flock,_netdev,user_xattr,nolazystatfs 0 0
   ```
