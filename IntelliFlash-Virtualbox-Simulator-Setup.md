@@ -281,7 +281,27 @@
    ipadm show-if
    dladm show-vlan
    dladm show-link
+   dladm show-aggr
+   dladm show-aggr -L
    zpool list
    zpool status
    zfs list
+   /usr/bin/diskencrypt get-status -a
+   fmadm faulty -s
+   fmadm acquit
+   /usr/cluster/bin/cluster status
+   /usr/cluster/bin/clrg status
    ```
+- Command to check BMC IP Addresses:
+  ```
+  /opt/local/bin/ipmitool lan print 8
+  ```
+- To list and recover retired devices:
+  ```
+  strings /etc/devices/retire_store
+  mv /etc/devices/retire_store /etc/devices/retire_store.bak
+  rm /dev/es/ses*
+  rm /dev/smp/expd*
+  touch /reconfigure
+  reboot
+  ```
