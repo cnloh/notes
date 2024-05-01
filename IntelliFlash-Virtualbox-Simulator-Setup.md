@@ -291,6 +291,7 @@
    fmadm acquit
    /usr/cluster/bin/cluster status
    /usr/cluster/bin/clrg status
+   /zebi/tools/mfg/zebifwchk.sh
    ```
 - Command to check BMC IP Addresses:
   ```
