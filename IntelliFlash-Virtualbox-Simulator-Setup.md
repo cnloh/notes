@@ -306,3 +306,8 @@
   touch /reconfigure
   reboot
   ```
+- Healthcheck:
+  ```
+  support.sh syscheck
+  prtstorage
+  ```
