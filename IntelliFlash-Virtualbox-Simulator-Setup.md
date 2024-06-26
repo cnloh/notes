@@ -310,4 +310,6 @@
   ```
   support.sh syscheck
   prtstorage
+  prtfw -c BMC
+  prtfw -c SES
   ```
