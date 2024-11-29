@@ -313,4 +313,5 @@
   prtfw -c BMC
   prtfw -c SES
   /usr/sbin/supportlogs.pl
+  /usr/sbin/zebiversion.sh
   ```
