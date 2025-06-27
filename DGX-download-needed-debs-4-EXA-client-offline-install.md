@@ -1,7 +1,7 @@
 - Download the targeted DGX OS ISO image from Nvidia:  
   https://enterprise-support.nvidia.com/s/downloads
 - Setup a simple VM with following sample configuration:  
-  Processor: 2 x vCPUs  
+  Processor: 4 x vCPUs  
   Memory: 2GB  
   Single Root VD: 50GB  
   Networt: 1 x vNIC (NAT or Brigded, DHCP enabled with internet access)
@@ -32,7 +32,60 @@
   passwd: password updated successfully
   root@dgx01:~# systemctl restart ssh
   ```
-- bb
-- bbb
-- bbb
-- bbb
+- DGX OS image does not include the DOCA OFED software which is a pre-requisite for EXA client software installation. To add DOCA repository, create a new file named /etc/apt/sources.list.d/doca.sources with following contents:
+  ```
+  Types: deb
+  URIs: https://linux.mellanox.com/public/repo/doca/2.9.1-2/ubuntu24.04/x86_64/
+  Suites: /
+  Signed-By: /usr/share/keyrings/GPG-KEY-Mellanox.gpg
+  ```
+  And update the newly added DOCA repository:
+  ```
+  # mv /etc/apt/sources.list.d/cuda-compute-repo.sources{,.disabled}
+  # apt-get update
+  ```
+- Install DOCA OFED:
+  ```
+  # dpkg --purge ibsim-utils ibutils libumad2sim0
+  # apt-get -o Dpkg::Options::=--force-confnew install -y doca-ofed
+  # ofed_info -s
+  OFED-internal-24.10-1.1.4.0.200:
+  ```
+- Restore the CUDA Repository which has been disabled above:
+  ```
+  # cd /etc/apt/sources.list.d
+  # mv cuda-compute-repo.sources.disabled uda-compute-repo.sources
+  ```
+- Reboot VM before proceeding with EXA client installation.
+- Upload the latest EXA client software package to the DGX image:
+  ```
+  # scp exa-client-6.3.3.tar.gz root@192.168.1.6:/root
+  ```
+- Objective here is to download the list of software packages dependecy for offline EXA client installation. Extract and run exa_client_deploy.py without internet connection. Prior disabling internet connection, perform one time "apt-get update" first:
+ ```
+  # mv /etc/apt/sources.list.d/dgx.sources /etc/apt/sources.list.d/dgx.sources.disabled
+  # apt-get update
+  # route del default gw 192.168.1.1
+  # ping www.google.com
+  ping: connect: Network is unreachable
+  # cd /root
+  # tar xf exa-client-6.3.3.tar.gz
+  # cd exa-client/
+  # ./exa_client_deploy.py
+
+  DDN EXAScaler client software installation tool: Version 6.3.3
+  Select an option:
+
+  1) Check if DDN EXAScaler client software is installed
+  2) Install DDN EXAScaler client software
+  3) Configure DDN EXAScaler client software
+  4) Remove DDN EXAScaler client software
+  5) List DDN EXAScaler mount commands
+  6) Exit
+  2
+
+  Selected /root/exa-client/lustre-source.tar.gz for installation
+
+Preparing build environment...
+Unable to prepare build environment. Failed command: DEBIAN_FRONTEND=noninteractive apt-get -y install attr autoconf automake bc bison build-essential bzip2 cpio debhelper devscripts ed fakeroot fio flex gcc gettext git golang kernel-wedge keyutils kmod krb5-multidev libaio-dev libattr1-dev libaudit-dev libbison-dev libblkid-dev libc6-dev libelf-dev libgssapi-krb5-2 libjson-c-dev libkeyutils-dev libkeyutils1 libkrb5-3 libkrb5-dev liblzma-dev libmount-dev libnl-3-dev libnl-genl-3-dev libpam0g-dev libpython3-dev libreadline-dev libselinux-dev libsnmp-dev libssl-dev libtool libtool-bin libudev-dev libyaml-dev lsof m4 make module-assistant pkg-config python3 python3-dev python3-netaddr python3-netifaces python3-setuptools quilt rsync sg3-utils swig systemd wget zlib1g-dev
+```
