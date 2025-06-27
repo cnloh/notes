@@ -8,7 +8,7 @@
   EFI Boot: Enabled (**Important. DGX OS is configured for booting from EFI)  
 3) Kick start DGX OS image installation by selecting "Install DGX OS 7.0.2" from the GRUB boot menu:
   ![](./Images/dgx/dgx-grub-menu.png)
-4) Post installation, permit direct ssh as root for ease of operation instead of having to ``sudo`` every time an elevated privilegde is required.
+4) Post installation, permit direct ssh as root for ease of operation instead of having to ``sudo`` every time an elevated privilege is required.
 ```
 login as: uadmin
 uadmin@192.168.1.6's password:
@@ -32,7 +32,7 @@ Retype new password:
 passwd: password updated successfully
 root@dgx01:~# systemctl restart ssh
 ```
-5) DGX OS image does not include the DOCA OFED software which is a pre-requisite for EXA client software installation. To add DOCA repository, create a new file named /etc/apt/sources.list.d/doca.sources with following contents:
+5) DGX OS image does not include the DOCA OFED software which is a pre-requisite for EXA client software installation. To add DOCA repository, create a new file named ``/etc/apt/sources.list.d/doca.sources`` with following contents:
 ```
 Types: deb
 URIs: https://linux.mellanox.com/public/repo/doca/2.9.1-2/ubuntu24.04/x86_64/
@@ -57,7 +57,7 @@ OFED-internal-24.10-1.1.4.0.200:
 ```
 # scp exa-client-6.3.3.tar.gz root@192.168.1.6:/root
 ```
-9) Objective here is to download the list of software packages dependency for offline EXA client installation. Extract and run exa_client_deploy.py without internet connection, disabling all respositories by simply renaming the /etc/apt/sources.list.d directory:
+9) Objective here is to download the list of software packages dependency for offline EXA client installation. Extract and run exa_client_deploy.py without internet connection, disabling all respositories by simply renaming the ``/etc/apt/sources.list.d`` directory:
 ```
 # mv /etc/apt/sources.list.d /etc/apt/sources.list.d.bak
 # route del default gw 192.168.1.1
@@ -152,7 +152,7 @@ Select an option:
 6) Exit
 6
 ```
-13) Fortunately there are no other packages dependency being flagged out and EXA client software installaton completed successfully. If there are further packages being flagged out, loop back step (9) to (12) repeatedly until installation can go through completely.
+13) Fortunately there are no other packages dependency being flagged out and EXA client software installation completed successfully. If there are further packages being flagged out, loop back step (9) to (12) repeatedly until installation can go through completely.
 14) Now we have ```/tmp/ddn-extra-debs-dgxos702-EXA633-2025061300``` containing all the additional deb packages required for EXA client offline install specifically to the version of DGX image to be deployed with.
 15) **Hint. Add "sshpass" package to the download list. FIO perf script will look for this command during performance validation.
 ```
