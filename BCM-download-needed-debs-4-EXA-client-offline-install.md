@@ -15,19 +15,19 @@
    Memory: 4GB  
    Single Root VD: 100GB  
    Network: 1 x vNIC (NAT or Brigded, DHCP enabled with internet access; For BCM externalnet)  
-            1 x vNIC (Internal Network; For GCM internalnet)    
+            1 x vNIC (Internal Network; For BCM internalnet)    
 
 5) Kick start BCM image installation by selecting "Start Base Command Manager Graphical Installer" from the GRUB boot menu:  
    ![](./Images/dgx/BCM-Boot-Menu.png)
 
 6) Follow through the installer wizard, selecting all defaults and entering whatever necessary information as prompted:  
-   ![](./Images/dgx/01-BCM-Install-Welcome.png)
+   ![](./Images/dgx/01-BCM-Install-Welcome.png)  
    :  
    :  
-   ![](./Images/dgx/14-BCM-Install-HeadNode-Net-Interfaces.png)
+   ![](./Images/dgx/14-BCM-Install-HeadNode-Net-Interfaces.png)  
    :  
    :  
-   ![](./Images/dgx/20-BCM-Install-Reboot.png)
+   ![](./Images/dgx/20-BCM-Install-Reboot.png)  
 
 7) Post installation, login as root with the password entered as prompted earlier from the Installer. Mount the ISO image from the BCM OS:
    ```
