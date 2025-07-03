@@ -29,7 +29,7 @@
    :  
    ![](./Images/dgx/20-BCM-Install-Reboot.png)  
 
-7) Post installation, login as root with the password entered as prompted earlier from the Installer. Mount the ISO image from the BCM OS:
+7) Post installation, login as root with the password entered as prompted earlier from the Installer. Mount the installation ISO image from BCM OS:
    ```
    root@bcm10-headnode:~# mount /dev/sr0 /mnt
    mount: /mnt: WARNING: source write-protected, mounted read-only.
@@ -121,7 +121,7 @@
    MLNX_OFED_LINUX-24.10-2.1.8.0:
    ```
 
-9) Upload the latest EXA client software package to DGX OS image:  
+9) Upload the latest EXA client software package to BCM OS image:  
    ```
    # scp exa-client-6.3.4.tar.gz root@192.168.1.13:/root
    ```
