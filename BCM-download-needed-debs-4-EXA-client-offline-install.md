@@ -4,7 +4,7 @@
 2) You will need to enter a valid product key to proceed with the download. To request for a free license to obtain the key:  
    https://www.nvidia.com/en-us/data-center/base-command/manager/
 
-   Log a support case with Nvidi if having issue with the product key provided:  
+   Log a support case with Nvidia if having issue with the product key provided:  
    https://enterprise-support.nvidia.com/s/create-case  
 
 3) Screenshot on the download page with the product key provided to me. Do ensure to include MOFED Packages which will be required for lustre client installation:  
