@@ -1,8 +1,8 @@
 #### TERMS:
 - L3 Differentiated Serviced Code Point (DSCP)
 - L2 Priority Code Points (PCP)
-- Priority-Flow-Control (PFC)
-- Explicit Congestion Notification packets (ECN)
+- Priority-Flow-Control (PFC) -> "brake" mechanism
+- Explicit Congestion Notification packets (ECN) -> "speed limit" or "transmission rates reduction" mechanism
 - ECN that are received are handled by the Data Center Quantized Congestion Notification Scheme (DCQCN)
 - RoCEv2 Congestion Notification Packet (CNP)
 
