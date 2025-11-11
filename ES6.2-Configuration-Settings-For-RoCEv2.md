@@ -1,5 +1,5 @@
 #### TERMS:
-- L3 Differentiated Serviced Code Point (DSCP)
+- L3 Differentiated Serviced Code Point (DSCP) -> Think of it as a "Priority Sticker" you put on a packet
 - L2 Priority Code Points (PCP)
 - Priority-Flow-Control (PFC) -> "brake" mechanism
 - Explicit Congestion Notification packets (ECN) -> "speed limit" or "transmission rates reduction" mechanism
