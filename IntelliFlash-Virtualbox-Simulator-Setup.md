@@ -315,3 +315,7 @@
   /usr/sbin/supportlogs.pl
   /usr/sbin/zebiversion.sh
   ```
+- Firmware directory:
+  ```
+  /usr/share/firmware
+  ```
