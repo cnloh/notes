@@ -312,6 +312,7 @@
   prtstorage
   prtfw -c BMC
   prtfw -c SES
+  ipmitool sensor list | grep -i fan_tach*
   /usr/sbin/supportlogs.pl
   /usr/sbin/zebiversion.sh
   ```
