@@ -296,6 +296,7 @@
 - Command to check BMC IP Addresses:
   ```
   /opt/local/bin/ipmitool lan print 8
+  /opt/local/bin/ipmitool mc reset cold
   ```
 - To list and recover retired devices:
   ```
